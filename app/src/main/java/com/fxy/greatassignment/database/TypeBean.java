@@ -5,21 +5,10 @@ package com.fxy.greatassignment.database;
 
 public class TypeBean {
     int id;
-    String type;   //类型名称
-    int noCheckID; //未被选中图片的ID
-    int checkedID; //选中图片的ID
-    int kind;      //支出:0   收入:1
-
-    public TypeBean() {
-    }
-
-    public TypeBean(int id, String type, int noCheckID, int checkedID, int kind) {
-        this.id = id;
-        this.type = type;
-        this.noCheckID = noCheckID;
-        this.checkedID = checkedID;
-        this.kind = kind;
-    }
+    String typename;   //类型名称
+    int imageId;    //未被选中图片id
+    int simageId;    //被选中图片id
+    int kind;     //收入-1  支出-0
 
     public int getId() {
         return id;
@@ -29,28 +18,28 @@ public class TypeBean {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getTypename() {
+        return typename;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypename(String typename) {
+        this.typename = typename;
     }
 
-    public int getNoCheckID() {
-        return noCheckID;
+    public int getImageId() {
+        return imageId;
     }
 
-    public void setNoCheckID(int noCheckID) {
-        this.noCheckID = noCheckID;
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
     }
 
-    public int getCheckedID() {
-        return checkedID;
+    public int getSimageId() {
+        return simageId;
     }
 
-    public void setCheckedID(int checkedID) {
-        this.checkedID = checkedID;
+    public void setSimageId(int simageId) {
+        this.simageId = simageId;
     }
 
     public int getKind() {
@@ -58,6 +47,17 @@ public class TypeBean {
     }
 
     public void setKind(int kind) {
+        this.kind = kind;
+    }
+
+    public TypeBean() {
+    }
+
+    public TypeBean(int id, String typename, int imageId, int simageId, int kind) {
+        this.id = id;
+        this.typename = typename;
+        this.imageId = imageId;
+        this.simageId = simageId;
         this.kind = kind;
     }
 }

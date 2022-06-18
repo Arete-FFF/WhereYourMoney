@@ -17,9 +17,8 @@ import java.util.List;
  */
 public class TypeBaseAdapter extends BaseAdapter {
     Context context;
-    List<TypeBean> typeBeanList;
-    int selectPos = 0; //表示支出或者收入
-
+    List<TypeBean> typeBeanList; //创建beanlist
+    int selectPos = 0;  //选中位置
     public TypeBaseAdapter(Context context, List<TypeBean> typeBeanList) {
         this.context = context;
         this.typeBeanList = typeBeanList;
@@ -48,14 +47,13 @@ public class TypeBaseAdapter extends BaseAdapter {
         TextView tv = convertView.findViewById(R.id.item_writefrag_tv);
         //获取指定位置的数据源
         TypeBean typeBean = typeBeanList.get(position);
-        tv.setText(typeBean.getType());
-        //判断当前位置是否为选中位置，如果是选中位置，就设置为带颜色的图片，否则为白色图片
+        tv.setText(typeBean.getTypename());
+        //判断当前位置是否为选中位置，如果是选中位置，就设置为带颜色的图片，否则为灰色图片
         if (selectPos == position) {
-            iv.setImageResource(typeBean.getNoCheckID());
+            iv.setImageResource(typeBean.getSimageId());
         }else{
-            iv.setImageResource(typeBean.getCheckedID());
+            iv.setImageResource(typeBean.getImageId());
         }
         return convertView;
-
     }
 }

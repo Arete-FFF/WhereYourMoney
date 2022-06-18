@@ -10,23 +10,24 @@ import com.fxy.greatassignment.R;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
     public DBOpenHelper(@Nullable Context context) {
-        super(context, "YourMoney.db", null, 1);
+        super(context,"tally.db" , null, 1);
     }
 
-    // 创建数据库，项目第一次运行会被调用
+    //创建数据库的方法，只有项目第一次运行时，会被调用
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //创建表的类型
-        String sql = "create table typetb(id integer primary key autoincrement,type varchar(10),noCheckID integer,checkedID integer,kind integer)";
-        //执行sql语言 创建数据库
+        //创建表示类型的表
+        String sql = "create table typetb(id integer primary key autoincrement,typename varchar(10),imageId integer,sImageId integer,kind integer)";
         db.execSQL(sql);
-        //向数据库插入数据
         insertType(db);
+        //创建记账表
+        sql = "create table accounttb(id integer primary key autoincrement,typename varchar(10),sImageId integer,beizhu varchar(80),money float," +
+                "time varchar(60),year integer,month integer,day integer,kind integer)";
+        db.execSQL(sql);
     }
-
     private void insertType(SQLiteDatabase db) {
         //向类型表中插入元素
-        String sql = "insert into typetb (type,noCheckId,checkedId,kind) values (?,?,?,?)";
+        String sql = "insert into typetb (typename,imageId,sImageId,kind) values (?,?,?,?)";
 
         db.execSQL(sql,new Object[]{"其他", R.mipmap.ic_qita,R.mipmap.ic_qita_hs,0});
         db.execSQL(sql,new Object[]{"餐饮", R.mipmap.ic_canyin,R.mipmap.ic_canyin_hs,0});
