@@ -59,7 +59,8 @@ public class DBManager {
         values.put("month",accountBean.getMonth());
         values.put("day",accountBean.getDay());
         values.put("kind",accountBean.getKind());
-        Log.i("animee", "insert succeed!!!!!!!!!!!!");
+        db.insert("accounttb",null,values);
+        Log.i("NoBug", "insert succeed!!!!!!!!!!!!");
     }
 
     /*
@@ -128,7 +129,7 @@ public class DBManager {
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
         // 遍历
         if (cursor.moveToFirst()) {
-            float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
+            @SuppressLint("Range") float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
             total = money;
         }
         return total;
@@ -139,7 +140,7 @@ public class DBManager {
         String sql = "select count(money) from accounttb where year=? and month=? and kind=?";
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
         if (cursor.moveToFirst()) {
-            int count = cursor.getInt(cursor.getColumnIndex("count(money)"));
+            @SuppressLint("Range") int count = cursor.getInt(cursor.getColumnIndex("count(money)"));
             total = count;
         }
         return total;
@@ -153,7 +154,7 @@ public class DBManager {
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", kind + ""});
         // 遍历
         if (cursor.moveToFirst()) {
-            float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
+            @SuppressLint("Range") float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
             total = money;
         }
         return total;
