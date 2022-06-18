@@ -188,4 +188,10 @@ public class DBManager {
         }
         return list;
     }
+
+    // 删除所有数据
+    public static void deleteAllAccount() {
+        String sql = "delete from accounttb";
+        db.execSQL(sql);
+    }
 }

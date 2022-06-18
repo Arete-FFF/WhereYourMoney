@@ -198,7 +198,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(it2);
                 break;
             case R.id.main_btn_more:
-
+                Intent it3 = new Intent(this, SettingActivity.class);
+                startActivity(it3);
                 break;
             case R.id.item_mainlv_top_budget:
                 showBudgetDialog();
