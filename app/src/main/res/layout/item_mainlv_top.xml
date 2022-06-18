@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/item_mainlv_top_zhichu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本月支出"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/item_mainlv_top_money_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_mainlv_top_zhichu"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="￥ 0"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/item_mainlv_top_shouru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本月收入"
+            android:layout_below="@id/item_mainlv_top_money_out"/>
+        <TextView
+            android:id="@+id/item_mainlv_top_money_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="￥ 0"
+            android:layout_below="@id/item_mainlv_top_money_out"
+            android:layout_toRightOf="@id/item_mainlv_top_shouru"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:id="@+id/item_mainlv_top_budget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥ 0"
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/item_mainlv_top_shouru"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:id="@+id/item_mainlv_top_tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="剩余预算"
+            android:layout_toLeftOf="@id/item_mainlv_top_budget"
+            android:layout_alignBottom="@id/item_mainlv_top_shouru"/>
+
+        <TextView
+            android:id="@+id/item_mainlv_top_chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/item_mainlv_top_money_out"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="40dp"
+            android:drawableLeft="@mipmap/ih_biaoge"
+            android:drawablePadding="10dp"
+            android:text="查看图表" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/item_mainlv_top_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="今日支出 ￥0  收入￥0"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>
