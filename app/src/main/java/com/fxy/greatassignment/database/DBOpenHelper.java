@@ -50,7 +50,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(sql,new Object[]{"奖金", R.mipmap.in_jiangjin,R.mipmap.in_jiangjin_ls,1});
         db.execSQL(sql,new Object[]{"交易", R.mipmap.in_jiaoyi,R.mipmap.in_jiaoyi_ls,1});
         db.execSQL(sql,new Object[]{"借入", R.mipmap.in_jieru,R.mipmap.in_jieru_ls,1});
-        db.execSQL(sql,new Object[]{"投资", R.mipmap.ic_touzi,R.mipmap.in_touzi_ls,1});
+        db.execSQL(sql,new Object[]{"投资", R.mipmap.in_touzi,R.mipmap.in_touzi_ls,1});
         db.execSQL(sql,new Object[]{"意外所得", R.mipmap.in_yiwai,R.mipmap.in_yiwai_ls,1});
     }
 
