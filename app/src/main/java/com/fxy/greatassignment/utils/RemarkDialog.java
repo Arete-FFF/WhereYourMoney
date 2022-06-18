@@ -25,7 +25,9 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
     OnEnsureListener onEnsureListener;
 
 
-    // 设定回调接口的方法
+    /*
+     * 设定回调接口的方法
+     */
     public void setOnEnsureListener(OnEnsureListener onEnsureListener) {
         this.onEnsureListener = onEnsureListener;
     }
@@ -65,12 +67,16 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    // 获取数据的方法
+    /*
+     * 获取数据的方法
+     */
     public String getEditText(){
         return editText.getText().toString().trim();
     }
 
-    // 设置弹出页面的大小
+    /*
+     * 设置弹出页面的大小
+     */
     public void setDialogSize(){
         // 获取当前窗口的对象
         Window window = getWindow();
@@ -90,7 +96,9 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
         handler.sendEmptyMessageDelayed(1,100);
     }
 
-    // 弹出软键盘
+    /*
+     * 弹出软键盘
+     */
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {

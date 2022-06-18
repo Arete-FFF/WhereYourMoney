@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initTime();
         // 初始化绑定控件
         initView();
-
+        // 设置长按方法
+        setLVLongClickListener();
+        // 设置非实时更新
         preferences = getSharedPreferences("budget", Context.MODE_PRIVATE);
         // 添加listview 头布局
         addLVHeaderView();
@@ -66,7 +68,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter = new AccountAdapter(this, datas);
         todayLv.setAdapter(adapter);
     }
-    // 绑定控件
+    /*
+     * 初始化绑定控件，并且绑定监听
+     */
     private void initView() {
         todayLv = findViewById(R.id.main_lv);
         editBtn = findViewById(R.id.main_btn_edit);
@@ -76,11 +80,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editBtn.setOnClickListener(this);
         moreBtn.setOnClickListener(this);
         searchIv.setOnClickListener(this);
-        // 设置长按方法
-        setLVLongClickListener();
+
     }
 
-    // 设置listview长按事件
+    /*
+     * 设置listview长按事件
+     */
     private void setLVLongClickListener() {
         todayLv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -98,7 +103,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-    // 弹出是否删除对话框
+    /*
+     * 弹出是否删除对话框，并监听给出反馈
+     */
     private void showDeleteItemDialog(AccountBean clickBean) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示信息").setMessage("您确定要删除这条记录么？")
@@ -121,7 +128,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         builder.create().show();
     }
 
-    // 添加标题view
+    /*
+     * 添加标题view
+     */
     private void addLVHeaderView() {
         //将布局转换成View对象
         headerView = getLayoutInflater().inflate(R.layout.item_mainlv_top, null);
@@ -136,7 +145,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         headerView.setOnClickListener(this);
     }
 
-    // 获取今日的具体时间
+    /*
+     * 获取今日的具体时间
+     */
     private void initTime() {
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
@@ -144,7 +155,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
-    // 当activity获取焦点时，更新页面
+    /*
+     * 当activity获取焦点时，更新页面
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -154,6 +167,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setTopTvShow();
     }
 
+    /*
+     * 设置顶部本月状态栏
+     */
     private void setTopTvShow() {
         //获取今日支出和收入总金额，显示在view当中
         float incomeOneDay = DBManager.getSumMoneyOneDay(year, month, day, 1);
@@ -176,9 +192,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    // 加载数据库数据
+    /*
+     * 加载数据库数据
+     */
     private void loadDBData() {
-        // 获取当天预算
+        // 获取当天的预算
         List<AccountBean> list = DBManager.getAccountListOneDayFromAccounttb(year, month, day);
         datas.clear();
         datas.addAll(list);
@@ -188,33 +206,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view) {
         switch (view.getId()) {
+            // 点击搜索图标
             case R.id.main_iv_search:
                 //跳转页面
                 Intent it1 = new Intent(this, SearchActivity.class);
                 startActivity(it1);
                 break;
+            // 点击"记"图标
             case R.id.main_btn_edit:
                 Intent it2 = new Intent(this, WriteActivity.class);
                 startActivity(it2);
                 break;
+            // 点击"more"图标
             case R.id.main_btn_more:
                 Intent it3 = new Intent(this, SettingActivity.class);
                 startActivity(it3);
                 break;
+            // 点击预算数字
             case R.id.item_mainlv_top_budget:
                 showBudgetDialog();
                 break;
         }
+        // 点击head view
         if (view == headerView) {
-            //头布局被点击了
-//            Intent intent = new Intent();
-//            intent.setClass(this, MonthChartActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent();
+            intent.setClass(this, MonthActivity.class);
+            startActivity(intent);
         }
 
     }
 
-    // 显示预算设置对话框
+    /*
+     * 显示预算设置对话框
+     */
     private void showBudgetDialog() {
         BudgetDialog dialog = new BudgetDialog(this);
         // 展示对话框

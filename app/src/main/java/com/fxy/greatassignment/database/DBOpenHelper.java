@@ -14,7 +14,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         super(context,"WhereYourMoney.db" , null, 1);
     }
 
-    //创建数据库的方法，只有项目第一次运行时，会被调用
+    /*
+     * 创建数据库的方法，只有项目第一次运行时，会被调用
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         //创建表示类型的表
@@ -26,6 +28,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
                 "time varchar(60),year integer,month integer,day integer,kind integer)";
         db.execSQL(sql);
     }
+    /*
+     * 初始化type表格
+     */
     private void insertType(SQLiteDatabase db) {
         //向类型表中插入元素
         String sql = "insert into typetb (typename,imageId,sImageId,kind) values (?,?,?,?)";
@@ -45,7 +50,6 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(sql,new Object[]{"医疗", R.mipmap.ic_yiliao,R.mipmap.ic_yiliao_hs,0});
         db.execSQL(sql,new Object[]{"水电", R.mipmap.ic_shuidian,R.mipmap.ic_shuidian_hs,0});
 
-
         db.execSQL(sql,new Object[]{"其他", R.mipmap.in_qita,R.mipmap.in_qita_ls,1});
         db.execSQL(sql,new Object[]{"工资", R.mipmap.in_gongzi,R.mipmap.in_gongzi_ls,1});
         db.execSQL(sql,new Object[]{"奖金", R.mipmap.in_jiangjin,R.mipmap.in_jiangjin_ls,1});
@@ -55,7 +59,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         db.execSQL(sql,new Object[]{"意外所得", R.mipmap.in_yiwai,R.mipmap.in_yiwai_ls,1});
     }
 
-    // 更新数据库，数据库更新版本调用
+    /*
+     * 更新数据库，数据库更新版本调用
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

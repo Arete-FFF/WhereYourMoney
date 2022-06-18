@@ -35,13 +35,16 @@ public class SearchActivity extends AppCompatActivity {
         initView();
         // 初始化数据
         mDatas = new ArrayList<>();
-        // 初始化控件
+        // 初始化适配器
         adapter = new AccountAdapter(this,mDatas);
         searchLv.setAdapter(adapter);
         // 当无数据时，显示的控件
         searchLv.setEmptyView(emptyTv);
     }
 
+    /*
+     * 初始化绑定各个控件
+     */
     private void initView() {
         // 绑定各个控件
         searchEt = findViewById(R.id.search_et);

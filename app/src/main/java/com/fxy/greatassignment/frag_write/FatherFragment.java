@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fxy.greatassignment.R;
+import com.fxy.greatassignment.adapter.TypeBaseAdapter;
 import com.fxy.greatassignment.database.AccountBean;
-import com.fxy.greatassignment.database.DBManager;
 import com.fxy.greatassignment.database.TypeBean;
 import com.fxy.greatassignment.utils.CalendarDialog;
 import com.fxy.greatassignment.utils.KeyBoardUtils;
@@ -32,13 +32,13 @@ import java.util.List;
 
 
 public class FatherFragment extends Fragment implements View.OnClickListener {
-    // 初始化xml中的view
+    // 定义需要绑定的view
     KeyboardView keyboardView;
     EditText editText;
     ImageView imageView;
     TextView type,remark,time;
     GridView gridView;
-    // 创建Bean List
+    // 创建Bean List数据源
     List<TypeBean> typeBeanList;
     TypeBaseAdapter adapter;
     // 创建记账数据对象
@@ -69,6 +69,9 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    /*
+     * 初始化时间并设置时间格式
+     */
     private void setInitTime() {
         Date date = new Date();
         // 设置时间的格式
@@ -87,6 +90,9 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
         accountBean.setDay(day);
     }
 
+    /*
+     * 设置GripView监听方法
+     */
     private void setGVListener() {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -109,7 +115,9 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    // 给GridView填充数据
+    /*
+     * 给GridView填充数据
+     */
     public void loadDataToGV() {
         typeBeanList = new ArrayList<>();//创建beanlist
         adapter = new TypeBaseAdapter(getContext(), typeBeanList);//创建新adapter
@@ -117,6 +125,9 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    /*
+     * 初始化view
+     */
     private void initView(View view) {
         keyboardView = view.findViewById((R.id.frag_write_keyboard));
         editText = view.findViewById(R.id.frag_write_et);
@@ -154,7 +165,9 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    // 子类重写该方法，支出与收入不同
+    /*
+     * 该方法用于重载，表示支出与收入不同
+     */
     public void saveAccountToDB() {
     }
 
@@ -172,11 +185,15 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    // 弹出备注对话框
+    /*
+     * 弹出备注对话框
+     */
     public void showBZDialog() {
         final RemarkDialog remarkDialog = new RemarkDialog(getContext());
+        // 展示页面
         remarkDialog.show();
         remarkDialog.setDialogSize();
+        // 监听是否点击
         remarkDialog.setOnEnsureListener(new RemarkDialog.OnEnsureListener() {
             @Override
             public void onEnsure() {
@@ -190,12 +207,14 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    // 弹出时间对话框
+    /*
+     * 弹出时间对话框
+     */
     private void showTimeDialog() {
         CalendarDialog calendarDialog = new CalendarDialog(getContext());
         // 展示时间对话框
         calendarDialog.show();
-        //设置点击确定的监听
+        // 设置点击确定的监听
         calendarDialog.setOnEnsureListener(new CalendarDialog.OnEnsureListener() {
             @Override
             public void onEnsure(String time1, int year, int month, int day) {

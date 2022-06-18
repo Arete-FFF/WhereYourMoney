@@ -42,7 +42,9 @@ public class HistoryActivity extends AppCompatActivity {
         loadData();
         setLVClickListener();
     }
-    /*设置ListView每一个item的长按事件*/
+    /*
+     * 设置ListView每一个item的长按事件
+     */
     private void setLVClickListener() {
         historyLv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -53,7 +55,9 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
     }
-
+    /*
+     * 监听是否确认删除，并给出反馈
+     */
     private void deleteItem(final AccountBean accountBean) {
         final int delId = accountBean.getId();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -70,7 +74,9 @@ public class HistoryActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-    // 获取所有数据
+    /*
+     * 获取所有数据
+     */
     private void loadData() {
         // 获取金额
         float income = DBManager.getSumMoney(1);

@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
  * 选择时间对话框
  */
 public class CalendarDialog extends Dialog implements View.OnClickListener {
-    //定义所需要控件
+    // 定义所需要控件
     DatePicker datePicker;
     EditText hour,minute;
     Button cancel,ensure;

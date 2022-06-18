@@ -26,16 +26,20 @@ public class BudgetDialog extends Dialog implements View.OnClickListener {
     ImageView cancelIv;
     Button ensureBtn;
     EditText moneyEt;
+    // 定义接口
+    OnEnsureListener onEnsureListener;
 
-    // 确定接口
+    /*
+     * 确定接口方法
+     */
     public  interface OnEnsureListener{
         public void onEnsure(float money);
     }
-    OnEnsureListener onEnsureListener;
 
     public void setOnEnsureListener(OnEnsureListener onEnsureListener) {
         this.onEnsureListener = onEnsureListener;
     }
+
 
     public BudgetDialog(@NonNull Context context) {
         super(context);
@@ -59,7 +63,8 @@ public class BudgetDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.dialog_budget_iv_error:
-                cancel();  //取消对话框
+                //取消对话框
+                cancel();
                 break;
             case R.id.dialog_budget_btn_ensure:
                 //获取输入数据数值
@@ -81,7 +86,9 @@ public class BudgetDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    // 设置Dialog的尺寸和屏幕尺寸一致
+    /*
+     * 设置Dialog的尺寸和屏幕尺寸一致
+     */
     public void setDialogSize(){
         //获取当前窗口对象
         Window window = getWindow();

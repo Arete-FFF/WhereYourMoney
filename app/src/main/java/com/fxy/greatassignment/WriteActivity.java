@@ -33,6 +33,9 @@ public class WriteActivity extends AppCompatActivity {
         initPager();
     }
 
+    /*
+     * 初始化界面，初始话fragment并且添加适配器
+     */
     private void initPager() {
         //初始化ViewPager页面集合
         List<Fragment> fragmentList = new ArrayList<>();
@@ -50,7 +53,9 @@ public class WriteActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    //点击事件
+    /*
+     * 点击事件
+     */
     public void ivonClick(View view){
         switch (view.getId()){
             case R.id.write_iv_back://若点击为❌图标

@@ -14,11 +14,14 @@ import com.fxy.greatassignment.database.TypeBean;
 
 import java.util.List;
 
-/**
+/*
  * 添加新账单的fragment
  * 支出账单
  */
 public class OutFragment extends FatherFragment {
+    /*
+     * 重载数据加载方法
+     */
     @Override
     public void loadDataToGV() {
         super.loadDataToGV();
@@ -31,7 +34,9 @@ public class OutFragment extends FatherFragment {
         type.setText("其他");
         imageView.setImageResource(R.mipmap.ic_qita_hs);
     }
-
+    /*
+     * 重载写入数据库函数
+     */
     @Override
     public void saveAccountToDB() {
         accountBean.setKind(0);

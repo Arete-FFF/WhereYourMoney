@@ -1,4 +1,4 @@
-package com.fxy.greatassignment.frag_write;
+package com.fxy.greatassignment.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,8 +17,10 @@ import java.util.List;
  */
 public class TypeBaseAdapter extends BaseAdapter {
     Context context;
-    List<TypeBean> typeBeanList; //创建beanlist
-    int selectPos = 0;  //选中位置
+    // 定义beanlist 数据来源
+    List<TypeBean> typeBeanList;
+    // 选中位置
+    public int selectPos = 0;
     public TypeBaseAdapter(Context context, List<TypeBean> typeBeanList) {
         this.context = context;
         this.typeBeanList = typeBeanList;
@@ -39,6 +41,9 @@ public class TypeBaseAdapter extends BaseAdapter {
         return position;
     }
 
+    /*
+     * adapter展示view函数
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.item_writefrag_gv,parent,false);

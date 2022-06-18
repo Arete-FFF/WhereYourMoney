@@ -37,6 +37,9 @@ public class SettingActivity extends AppCompatActivity {
         }
     }
 
+    /*
+     * 显示删除提示，监听选项并反馈
+     */
     private void showDeleteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("删除提示")
@@ -51,6 +54,7 @@ public class SettingActivity extends AppCompatActivity {
                         Toast.makeText(SettingActivity.this,"删除成功！",Toast.LENGTH_SHORT).show();
                     }
                 });
+        // 显示提示
         builder.create().show();
     }
 }

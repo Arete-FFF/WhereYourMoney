@@ -11,7 +11,9 @@ import android.widget.EditText;
 
 
 public class KeyBoardUtils {
-    private final Keyboard k;    //自定义键盘
+    //自定义键盘
+    private final Keyboard k;
+    // 定义需绑定控件
     private KeyboardView keyboardView;
     private EditText editText;
 
@@ -24,6 +26,9 @@ public class KeyBoardUtils {
         this.onEnsureListener = onEnsureListener;
     }
 
+    /*
+     * 设置软键盘格式
+     */
     public KeyBoardUtils(KeyboardView keyboardView, EditText editText) {
         this.keyboardView = keyboardView;
         this.editText = editText;
@@ -43,7 +48,9 @@ public class KeyBoardUtils {
         @Override
         public void onRelease(int primaryCode) {
         }
-        // 绑定所有key的响应
+        /*
+         * 绑定所有key的响应
+         */
         @Override
         public void onKey(int primaryCode, int[] keyCodes) {
             Editable edittable = editText.getText();
@@ -84,7 +91,9 @@ public class KeyBoardUtils {
         }
     };
 
-    //    显示键盘
+    /*
+     * 显示键盘
+     */
     public void showKeyboard(){
         int visibility = keyboardView.getVisibility();
         if (visibility == View.INVISIBLE ||visibility==View.GONE) {
@@ -92,7 +101,9 @@ public class KeyBoardUtils {
         }
     }
 
-    //    隐藏键盘
+    /*
+     * 隐藏键盘
+     */
     public void hideKeyboard(){
         int visibility = keyboardView.getVisibility();
         if (visibility== View.VISIBLE||visibility==View.INVISIBLE) {

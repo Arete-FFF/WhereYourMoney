@@ -19,7 +19,9 @@ import java.util.List;
 public class DBManager {
 
     private static SQLiteDatabase db;
-    /* 初始化数据库对象*/
+    /*
+     * 初始化数据库对象
+     */
     public static void initDB(Context context){
         DBOpenHelper helper = new DBOpenHelper(context);  //得到帮助类对象
         db = helper.getWritableDatabase();      //得到数据库对象
@@ -47,7 +49,9 @@ public class DBManager {
         return list;
     }
 
-    // 向数据表中插入一条信息
+    /*
+     * 向数据表中插入一条信息
+     */
     public static void insertItemToAccounttb(AccountBean accountBean) {
         ContentValues values = new ContentValues();
         values.put("typename",accountBean.getTypename());
@@ -65,7 +69,7 @@ public class DBManager {
 
     /*
      * 获取记账表当中某一天的所有支出或者收入情况
-     * */
+     */
     public static List<AccountBean>getAccountListOneDayFromAccounttb(int year,int month,int day){
         List<AccountBean>list = new ArrayList<>();
         String sql = "select * from accounttb where year=? and month=? and day=? order by id desc";
@@ -147,26 +151,14 @@ public class DBManager {
         }
         return total;
     }
-    /*
-     * 获取某一年的支出或者收入的总金额   kind：支出==0    收入===1
-     */
-    public static float getSumMoneyOneYear(int year,int kind){
-        float total = 0.0f;
-        String sql = "select sum(money) from accounttb where year=? and kind=?";
-        Cursor cursor = db.rawQuery(sql, new String[]{year + "", kind + ""});
-        // 遍历
-        if (cursor.moveToFirst()) {
-            @SuppressLint("Range") float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
-            total = money;
-        }
-        return total;
-    }
 
     public static int deleteItemFromAccounttbById(int click_id) {
         int i = db.delete("accounttb", "id=?", new String[]{click_id + ""});
         return i;
     }
-    // 根据备注查找记录
+    /*
+     * 根据备注查找记录
+     */
     public static List<AccountBean> getAccountListByRemarkFromAccounttb(String text) {
         List<AccountBean>list = new ArrayList<>();
         //使用模糊查询
@@ -189,12 +181,16 @@ public class DBManager {
         return list;
     }
 
-    // 删除所有数据
+    /*
+     * 删除所有数据
+     */
     public static void deleteAllAccount() {
         String sql = "delete from accounttb";
         db.execSQL(sql);
     }
-    // 查询数据库所有数据
+    /*
+     * 查询数据库所有数据
+     */
     public static List<AccountBean> getAllAccountListFromAccounttb() {
         List<AccountBean>list = new ArrayList<>();
         // 查询所有数据
@@ -217,7 +213,9 @@ public class DBManager {
         return list;
     }
 
-    // 获取所有数据的总金额
+    /*
+     * 获取所有数据的总金额
+     */
     public static float getSumMoney(int kind) {
         float total = 0.0f;
         String sql = "select sum(money) from accounttb where  kind=?";
@@ -228,5 +226,27 @@ public class DBManager {
             total = money;
         }
         return total;
+    }
+    /*
+     * 获取某年某月某一类型的总钱数，并计算所有比例存入数据库
+     */
+    public static List<MonthItemBean> getMonthListFromAccounttb(int year, int month, int kind) {
+        List<MonthItemBean>list = new ArrayList<>();
+        float sumMoneyOneMonth = getSumMoneyOneMonth(year, month, kind);  //求出支出或者收入总钱数
+        String sql = "select typename,sImageId,sum(money)as total from accounttb where year=? and month=? and kind=? group by typename " +
+                "order by total desc";
+        Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
+        while (cursor.moveToNext()) {
+            @SuppressLint("Range") int sImageId = cursor.getInt(cursor.getColumnIndex("sImageId"));
+            @SuppressLint("Range") String typename = cursor.getString(cursor.getColumnIndex("typename"));
+            @SuppressLint("Range") float total = cursor.getFloat(cursor.getColumnIndex("total"));
+            //计算所占百分比  total /sumMonth
+            BigDecimal temp = new BigDecimal(total/sumMoneyOneMonth) ;
+            float ratio = temp.setScale(4,4).floatValue();
+
+            MonthItemBean bean = new MonthItemBean(sImageId, typename, ratio, total);
+            list.add(bean);
+        }
+        return list;
     }
 }

@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MonthActivity">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="@color/grey_light"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:id="@+id/month_iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/ih_error"
+            android:layout_marginLeft="10dp"
+            android:onClick="onClick"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="本月账单详情"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/month_tv_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共1笔支出, ￥23.0"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/month_tv_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共2笔收入, ￥113.0"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/month_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:gravity="center">
+        <Button
+            android:id="@+id/month_btn_out"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="支出"
+            android:background="@drawable/dialog_btn_bg_2"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:onClick="onClick"
+            android:layout_marginRight="10dp"/>
+        <Button
+            android:id="@+id/month_btn_in"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:text="收入"
+            android:background="@drawable/dialog_btn_bg_1"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:onClick="onClick"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/month_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

@@ -14,7 +14,7 @@ public class AccountBean {
     int year;
     int month;
     int day;
-    int kind;   //类型  收入---1   支出---0
+    int kind;   //类型  支出 0 收入 1
 
     public int getId() {
         return id;
