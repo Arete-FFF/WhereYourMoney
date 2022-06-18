@@ -6,11 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+
 import com.fxy.greatassignment.R;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
     public DBOpenHelper(@Nullable Context context) {
-        super(context,"tally.db" , null, 1);
+        super(context,"WhereYourMoney.db" , null, 1);
     }
 
     //创建数据库的方法，只有项目第一次运行时，会被调用

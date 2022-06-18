@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.fxy.greatassignment.adapter.WriteFragmentPagerAdapter;
 import com.fxy.greatassignment.frag_write.InFragment;
+import com.fxy.greatassignment.frag_write.FatherFragment;
 import com.fxy.greatassignment.frag_write.OutFragment;
 import com.google.android.material.tabs.TabLayout;
 

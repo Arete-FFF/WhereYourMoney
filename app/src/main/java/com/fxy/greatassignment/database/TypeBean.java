@@ -1,8 +1,7 @@
 package com.fxy.greatassignment.database;
 /*
- * 表示类型的类
- */
-
+ * 表示收入或者支出具体类型的类
+ * */
 public class TypeBean {
     int id;
     String typename;   //类型名称
