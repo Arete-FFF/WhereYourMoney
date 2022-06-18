@@ -160,4 +160,8 @@ public class DBManager {
         return total;
     }
 
+    public static int deleteItemFromAccounttbById(int click_id) {
+        int i = db.delete("accounttb", "id=?", new String[]{click_id + ""});
+        return i;
+    }
 }

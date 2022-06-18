@@ -2,11 +2,14 @@ package com.fxy.greatassignment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     View headerView;
     TextView topOutTv,topInTv,topbudgetTv,topConTv;
 
-
+    // 定义非实时更新组件
     SharedPreferences preferences;
 
     @Override
@@ -73,8 +76,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editBtn.setOnClickListener(this);
         moreBtn.setOnClickListener(this);
         searchIv.setOnClickListener(this);
+        // 设置长按方法
+        setLVLongClickListener();
     }
 
+    // 设置listview长按事件
+    private void setLVLongClickListener() {
+        todayLv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //点击了头布局
+                if (position == 0) {
+                    return false;
+                }
+                int pos = position-1;
+                //获取正在被点击的这条信息
+                AccountBean clickBean = datas.get(pos);
+                //弹出提示用户是否删除的对话框
+                showDeleteItemDialog(clickBean);
+                return false;
+            }
+        });
+    }
+    // 弹出是否删除对话框
+    private void showDeleteItemDialog(AccountBean clickBean) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示信息").setMessage("您确定要删除这条记录么？")
+                .setNegativeButton("取消",null)//取消则正常返回
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() { //确定则调用数据库删除
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        int click_id = clickBean.getId();
+                        //执行删除的操作
+                        DBManager.deleteItemFromAccounttbById(click_id);
+                        //实时刷新，移除集合当中的对象
+                        datas.remove(clickBean);
+                        //适配器更新数据
+                        adapter.notifyDataSetChanged();
+                        //改变头布局TextView显示的内容
+                        setTopTvShow();
+                    }
+                });
+        //显示对话框
+        builder.create().show();
+    }
+
+    // 添加标题view
     private void addLVHeaderView() {
         //将布局转换成View对象
         headerView = getLayoutInflater().inflate(R.layout.item_mainlv_top, null);
@@ -84,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         topInTv = headerView.findViewById(R.id.item_mainlv_top_money_in);
         topbudgetTv = headerView.findViewById(R.id.item_mainlv_top_budget);
         topConTv = headerView.findViewById(R.id.item_mainlv_top_day);
-
+        //绑定监听
         topbudgetTv.setOnClickListener(this);
         headerView.setOnClickListener(this);
     }
@@ -120,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         topOutTv.setText("￥"+outcomeOneMonth);
 
         //设置显示预算剩余
-        float bmoney = preferences.getFloat("bmoney", 0);//预算
+        float bmoney = preferences.getFloat("bmoney", 0);
         if (bmoney == 0) {
             topbudgetTv.setText("￥ 0");
         }else{
@@ -131,11 +178,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // 加载数据库数据
     private void loadDBData() {
+        // 获取当天预算
         List<AccountBean> list = DBManager.getAccountListOneDayFromAccounttb(year, month, day);
         datas.clear();
         datas.addAll(list);
         adapter.notifyDataSetChanged();
-
     }
 
 
