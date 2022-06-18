@@ -69,9 +69,9 @@
             android:layout_alignParentTop="@id/item_mainlv_top_money_out"
             android:layout_alignParentRight="true"
             android:layout_marginTop="20dp"
-            android:drawableLeft="@mipmap/ih_biaoge"
-            android:drawablePadding="10dp"
-            android:text="查看图表" />
+            android:text="点击查看本月收支"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
     </RelativeLayout>
     <TextView
         android:id="@+id/item_mainlv_top_day"

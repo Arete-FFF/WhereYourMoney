@@ -189,11 +189,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_iv_search:
-
+                //跳转页面
+                Intent it1 = new Intent(this, SearchActivity.class);
+                startActivity(it1);
                 break;
             case R.id.main_btn_edit:
-                Intent it1 = new Intent(this, WriteActivity.class);
-                startActivity(it1);
+                Intent it2 = new Intent(this, WriteActivity.class);
+                startActivity(it2);
                 break;
             case R.id.main_btn_more:
 

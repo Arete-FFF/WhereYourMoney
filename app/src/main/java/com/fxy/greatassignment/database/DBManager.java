@@ -25,10 +25,10 @@ public class DBManager {
         db = helper.getWritableDatabase();      //得到数据库对象
     }
 
-    /**
+    /*
      * 读取数据库当中的数据，写入内存集合里
      *   kind :表示收入或者支出
-     * */
+     */
     public static List<TypeBean>getTypeList(int kind){
         List<TypeBean>list = new ArrayList<>();
         //读取typetb表当中的数据
@@ -86,7 +86,7 @@ public class DBManager {
     }
     /*
      * 获取记账表当中某一月的所有支出或者收入情况
-     * */
+     */
     public static List<AccountBean>getAccountListOneMonthFromAccounttb(int year,int month){
         List<AccountBean>list = new ArrayList<>();
         String sql = "select * from accounttb where year=? and month=? order by id desc";
@@ -106,9 +106,9 @@ public class DBManager {
         }
         return list;
     }
-    /**
+    /*
      * 获取某一天的支出或者收入的总金额   kind：支出==0    收入===1
-     * */
+     */
     public static float getSumMoneyOneDay(int year,int month,int day,int kind){
         float total = 0.0f;
         String sql = "select sum(money) from accounttb where year=? and month=? and day=? and kind=?";
@@ -120,9 +120,9 @@ public class DBManager {
         }
         return total;
     }
-    /**
+    /*
      * 获取某一月的支出或者收入的总金额   kind：支出==0    收入===1
-     * */
+     */
     public static float getSumMoneyOneMonth(int year,int month,int kind){
         float total = 0.0f;
         String sql = "select sum(money) from accounttb where year=? and month=? and kind=?";
@@ -134,7 +134,9 @@ public class DBManager {
         }
         return total;
     }
-    /** 统计某月份支出或者收入情况有多少条  收入-1   支出-0*/
+    /*
+     * 统计某月份支出或者收入情况有多少条  收入-1   支出-0
+     */
     public static int getCountItemOneMonth(int year,int month,int kind){
         int total = 0;
         String sql = "select count(money) from accounttb where year=? and month=? and kind=?";
@@ -145,9 +147,9 @@ public class DBManager {
         }
         return total;
     }
-    /**
+    /*
      * 获取某一年的支出或者收入的总金额   kind：支出==0    收入===1
-     * */
+     */
     public static float getSumMoneyOneYear(int year,int kind){
         float total = 0.0f;
         String sql = "select sum(money) from accounttb where year=? and kind=?";
@@ -163,5 +165,27 @@ public class DBManager {
     public static int deleteItemFromAccounttbById(int click_id) {
         int i = db.delete("accounttb", "id=?", new String[]{click_id + ""});
         return i;
+    }
+    // 根据备注查找记录
+    public static List<AccountBean> getAccountListByRemarkFromAccounttb(String text) {
+        List<AccountBean>list = new ArrayList<>();
+        //使用模糊查询
+        String sql = "select * from accounttb where beizhu like '%"+text+"%'";
+        Cursor cursor = db.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("id"));
+            @SuppressLint("Range") String typename = cursor.getString(cursor.getColumnIndex("typename"));
+            @SuppressLint("Range") String beizhu = cursor.getString(cursor.getColumnIndex("beizhu"));
+            @SuppressLint("Range") String time = cursor.getString(cursor.getColumnIndex("time"));
+            @SuppressLint("Range") int sImageId = cursor.getInt(cursor.getColumnIndex("sImageId"));
+            @SuppressLint("Range") int kind = cursor.getInt(cursor.getColumnIndex("kind"));
+            @SuppressLint("Range") float money = cursor.getFloat(cursor.getColumnIndex("money"));
+            @SuppressLint("Range") int year = cursor.getInt(cursor.getColumnIndex("year"));
+            @SuppressLint("Range") int month = cursor.getInt(cursor.getColumnIndex("month"));
+            @SuppressLint("Range") int day = cursor.getInt(cursor.getColumnIndex("day"));
+            AccountBean accountBean = new AccountBean(id, typename, sImageId, beizhu, money, time, year, month, day, kind);
+            list.add(accountBean);
+        }
+        return list;
     }
 }
