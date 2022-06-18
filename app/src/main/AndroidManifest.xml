@@ -13,6 +13,12 @@
         android:theme="@style/Theme.GreatAssignment"
         tools:targetApi="31">
         <activity
+            android:name=".MonthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".SettingActivity"
             android:exported="false" />
         <activity

@@ -194,4 +194,39 @@ public class DBManager {
         String sql = "delete from accounttb";
         db.execSQL(sql);
     }
+    // 查询数据库所有数据
+    public static List<AccountBean> getAllAccountListFromAccounttb() {
+        List<AccountBean>list = new ArrayList<>();
+        // 查询所有数据
+        String sql = "select * from accounttb order by year, month, day desc";
+        Cursor cursor = db.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("id"));
+            @SuppressLint("Range") String typename = cursor.getString(cursor.getColumnIndex("typename"));
+            @SuppressLint("Range") String beizhu = cursor.getString(cursor.getColumnIndex("beizhu"));
+            @SuppressLint("Range") String time = cursor.getString(cursor.getColumnIndex("time"));
+            @SuppressLint("Range") int sImageId = cursor.getInt(cursor.getColumnIndex("sImageId"));
+            @SuppressLint("Range") int kind = cursor.getInt(cursor.getColumnIndex("kind"));
+            @SuppressLint("Range") float money = cursor.getFloat(cursor.getColumnIndex("money"));
+            @SuppressLint("Range") int year = cursor.getInt(cursor.getColumnIndex("year"));
+            @SuppressLint("Range") int month = cursor.getInt(cursor.getColumnIndex("month"));
+            @SuppressLint("Range") int day = cursor.getInt(cursor.getColumnIndex("day"));
+            AccountBean accountBean = new AccountBean(id, typename, sImageId, beizhu, money, time, year, month, day, kind);
+            list.add(accountBean);
+        }
+        return list;
+    }
+
+    // 获取所有数据的总金额
+    public static float getSumMoney(int kind) {
+        float total = 0.0f;
+        String sql = "select sum(money) from accounttb where  kind=?";
+        Cursor cursor = db.rawQuery(sql, new String[]{kind + ""});
+        // 遍历
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") float money = cursor.getFloat(cursor.getColumnIndex("sum(money)"));
+            total = money;
+        }
+        return total;
+    }
 }

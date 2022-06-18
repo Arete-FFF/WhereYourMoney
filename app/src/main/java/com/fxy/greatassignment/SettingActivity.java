@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -28,8 +29,11 @@ public class SettingActivity extends AppCompatActivity {
                 showDeleteDialog();
                 break;
             case R.id.setting_tv_all:
-
+                //跳转页面
+                Intent it1 = new Intent(this, HistoryActivity.class);
+                startActivity(it1);
                 break;
+
         }
     }
 
