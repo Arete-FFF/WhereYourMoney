@@ -46,6 +46,18 @@ public class DBManager {
         return list;
     }
 
+    // 向数据表中插入一条信息
     public static void insertItemToAccounttb(AccountBean accountBean) {
+        ContentValues values = new ContentValues();
+        values.put("typename",accountBean.getTypename());
+        values.put("sImageId",accountBean.getsImageId());
+        values.put("beizhu",accountBean.getBeizhu());
+        values.put("money",accountBean.getMoney());
+        values.put("time",accountBean.getTime());
+        values.put("year",accountBean.getYear());
+        values.put("month",accountBean.getMonth());
+        values.put("day",accountBean.getDay());
+        values.put("kind",accountBean.getKind());
+        db.insert("accounttb",null,values);
     }
 }

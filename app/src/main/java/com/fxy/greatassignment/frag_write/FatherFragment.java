@@ -20,6 +20,7 @@ import com.fxy.greatassignment.R;
 import com.fxy.greatassignment.database.AccountBean;
 import com.fxy.greatassignment.database.DBManager;
 import com.fxy.greatassignment.database.TypeBean;
+import com.fxy.greatassignment.utils.CalendarDialog;
 import com.fxy.greatassignment.utils.KeyBoardUtils;
 import com.fxy.greatassignment.utils.RemarkDialog;
 
@@ -175,7 +176,7 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
     public void showBZDialog() {
         final RemarkDialog remarkDialog = new RemarkDialog(getContext());
         remarkDialog.show();
-//        remarkDialog.setRemarkSize();
+        remarkDialog.setDialogSize();
         remarkDialog.setOnEnsureListener(new RemarkDialog.OnEnsureListener() {
             @Override
             public void onEnsure() {
@@ -189,6 +190,21 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    // 弹出时间对话框
     private void showTimeDialog() {
+        CalendarDialog calendarDialog = new CalendarDialog(getContext());
+        // 展示时间对话框
+        calendarDialog.show();
+        //设置点击确定的监听
+        calendarDialog.setOnEnsureListener(new CalendarDialog.OnEnsureListener() {
+            @Override
+            public void onEnsure(String time1, int year, int month, int day) {
+                time.setText(time1);
+                accountBean.setTime(time1);
+                accountBean.setYear(year);
+                accountBean.setMoney(month);
+                accountBean.setDay(day);
+            }
+        });
     }
 }
