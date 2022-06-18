@@ -14,7 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fxy.greatassignment.R;
+import com.fxy.greatassignment.database.DBManager;
+import com.fxy.greatassignment.database.TypeBean;
 import com.fxy.greatassignment.utils.KeyBoardUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 添加新账单的fragment
@@ -27,14 +32,32 @@ public class OutFragment extends Fragment {
     ImageView imageView;
     TextView type,remark,time;
     GridView gridView;
+    List<TypeBean> typeBeanList;
+    TypeBaseAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_out,container,false);
+        //初始化view
         initView(view);
+        // 给GridView填充数据
+        loadDataToGV();
         return view;
+    }
+
+
+    // 给GridView填充数据
+    private void loadDataToGV() {
+        typeBeanList = new ArrayList<>();//创建beanlist
+        adapter = new TypeBaseAdapter(getContext(), typeBeanList);//创建新adapter
+        gridView.setAdapter(adapter);
+        //获取数据库数据
+        List<TypeBean> outlist = DBManager.getTypeList(0);
+        typeBeanList.addAll(outlist);
+        //使用adapter输出
+        adapter.notifyDataSetChanged();
     }
 
     private void initView(View view) {

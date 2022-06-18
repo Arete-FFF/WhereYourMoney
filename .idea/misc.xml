@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/activity_main.xml" value="0.19794784095767423" />
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/activity_write.xml" value="0.19794784095767423" />
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/fragment_in.xml" value="0.19794784095767423" />
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/fragment_out.xml" value="0.19794784095767423" />
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/item_mainlv.xml" value="0.19794784095767423" />
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/item_mainlv_top.xml" value="0.19794784095767423" />
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/item_writefrag_gv.xml" value="0.19709277469003847" />
         <entry key="..\:/Code/AndroidStudio/t/GreatAssignment/app/src/main/res/drawable/ic_launcher_background.xml" value="0.148" />
         <entry key="..\:/Code/AndroidStudio/t/GreatAssignment/app/src/main/res/drawable/main_morebtn_bg.xml" value="0.148" />
         <entry key="..\:/Code/AndroidStudio/t/GreatAssignment/app/src/main/res/drawable/main_recordbtn_bg.xml" value="0.148" />
