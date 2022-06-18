@@ -45,4 +45,7 @@ public class DBManager {
         }
         return list;
     }
+
+    public static void insertItemToAccounttb(AccountBean accountBean) {
+    }
 }

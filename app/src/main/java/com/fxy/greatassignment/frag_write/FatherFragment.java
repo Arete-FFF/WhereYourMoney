@@ -21,6 +21,7 @@ import com.fxy.greatassignment.database.AccountBean;
 import com.fxy.greatassignment.database.DBManager;
 import com.fxy.greatassignment.database.TypeBean;
 import com.fxy.greatassignment.utils.KeyBoardUtils;
+import com.fxy.greatassignment.utils.RemarkDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class FatherFragment extends Fragment {
+public class FatherFragment extends Fragment implements View.OnClickListener {
     // 初始化xml中的view
     KeyboardView keyboardView;
     EditText editText;
@@ -124,6 +125,10 @@ public class FatherFragment extends Fragment {
         remark = view.findViewById(R.id.frag_write_tv_remark);
         time = view.findViewById(R.id.frag_write_tv_time);
 
+        // 绑定点击事件
+        remark.setOnClickListener(this);
+        time.setOnClickListener(this);
+
         //显示自定义软键盘
         KeyBoardUtils boardUtils = new KeyBoardUtils(keyboardView, editText);
         boardUtils.showKeyboard();
@@ -141,9 +146,49 @@ public class FatherFragment extends Fragment {
                 float money = Float.parseFloat(moneyStr);
                 accountBean.setMoney(money);
                 // TODO 记录当前edittext信息，保存到数据库中
+                saveAccountToDB();
                 // TODO 返回上级页面
                 getActivity().finish();
             }
         });
+    }
+
+    // 子类重写该方法，支出与收入不同
+    public void saveAccountToDB() {
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.frag_write_tv_time:
+                // 展示选择日期对话框
+                showTimeDialog();
+                break;
+            case R.id.frag_write_tv_remark:
+                // 展示备注对话框
+                showBZDialog();
+                break;
+        }
+    }
+
+    // 弹出备注对话框
+    public void showBZDialog() {
+        final RemarkDialog remarkDialog = new RemarkDialog(getContext());
+        remarkDialog.show();
+//        remarkDialog.setRemarkSize();
+        remarkDialog.setOnEnsureListener(new RemarkDialog.OnEnsureListener() {
+            @Override
+            public void onEnsure() {
+                String text = remarkDialog.getEditText();
+                if (!TextUtils.isEmpty(text)) {
+                    remark.setText(text);
+                    accountBean.setBeizhu(text);
+                }
+                remarkDialog.cancel();
+            }
+        });
+    }
+
+    private void showTimeDialog() {
     }
 }

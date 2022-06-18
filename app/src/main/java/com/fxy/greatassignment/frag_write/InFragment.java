@@ -31,5 +31,9 @@ public class InFragment extends FatherFragment {
         type.setText("其他");
         imageView.setImageResource(R.mipmap.in_qita_ls);
     }
-
+    @Override
+    public void saveAccountToDB() {
+        accountBean.setKind(1);
+        DBManager.insertItemToAccounttb(accountBean);
+    }
 }

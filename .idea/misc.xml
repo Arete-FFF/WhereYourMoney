@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/drawable/dialog_btn_bg_1.xml" value="0.1105" />
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/drawable/dialog_btn_bg_2.xml" value="0.1105" />
         <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/activity_main.xml" value="0.19794784095767423" />
         <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/activity_write.xml" value="0.19794784095767423" />
+        <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/dialog_remark.xml" value="0.2" />
         <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/fragment_in.xml" value="0.19794784095767423" />
         <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/fragment_out.xml" value="0.19794784095767423" />
         <entry key="..\:/Code/AndroidStudio/GreatAssignment/app/src/main/res/layout/item_mainlv.xml" value="0.19794784095767423" />

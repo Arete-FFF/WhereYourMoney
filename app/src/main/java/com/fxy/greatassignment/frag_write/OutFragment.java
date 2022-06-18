@@ -32,4 +32,9 @@ public class OutFragment extends FatherFragment {
         imageView.setImageResource(R.mipmap.ic_qita_hs);
     }
 
+    @Override
+    public void saveAccountToDB() {
+        accountBean.setKind(0);
+        DBManager.insertItemToAccounttb(accountBean);
+    }
 }
