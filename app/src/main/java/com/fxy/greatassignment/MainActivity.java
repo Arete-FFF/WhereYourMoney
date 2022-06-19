@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         // 设置长按方法
         setLVLongClickListener();
-        // 设置非实时更新
+        // 设置非实时更新,主要针对预算，有可能未点击确定但是退出了程序
         preferences = getSharedPreferences("budget", Context.MODE_PRIVATE);
         // 添加listview 头布局
         addLVHeaderView();

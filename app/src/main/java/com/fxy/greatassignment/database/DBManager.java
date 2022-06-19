@@ -23,7 +23,7 @@ public class DBManager {
      * 初始化数据库对象
      */
     public static void initDB(Context context) {
-        DBOpenHelper helper = new DBOpenHelper(context);  //得到帮助类对象
+        DBOpenHelper helper = new DBOpenHelper(context);  //得到helper类对象
         db = helper.getWritableDatabase();      //得到数据库对象
     }
 
@@ -200,7 +200,7 @@ public class DBManager {
     public static List<AccountBean> getAllAccountListFromAccounttb() {
         List<AccountBean> list = new ArrayList<>();
         // 查询所有数据
-        String sql = "select * from accounttb order by year, month, day desc";
+        String sql = "select * from accounttb order by year DESC, month DESC, day DESC";
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
             @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("id"));

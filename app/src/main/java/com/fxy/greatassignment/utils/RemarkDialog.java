@@ -23,16 +23,6 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
     Button cancel, ensure;
     // 创建监听
     OnEnsureListener onEnsureListener;
-    /*
-     * 弹出软键盘
-     */
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    };
 
     public RemarkDialog(@NonNull Context context) {
         super(context);
@@ -101,6 +91,17 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
         //设置延迟弹出软键盘  否则会出现显示异常
         handler.sendEmptyMessageDelayed(1, 100);
     }
+    /*
+     * 弹出软键盘
+     */
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    };
+
 
     public interface OnEnsureListener {
         public void onEnsure();
