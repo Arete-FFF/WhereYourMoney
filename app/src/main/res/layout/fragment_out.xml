@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_light">
@@ -11,35 +10,40 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:padding="10dp">
+
         <ImageView
             android:id="@+id/frag_write_iv"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@mipmap/ic_qita_hs"/>
+            android:src="@mipmap/ic_qita_hs" />
+
         <TextView
             android:id="@+id/frag_write_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="其他"
-            android:layout_toRightOf="@id/frag_write_iv"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/frag_write_iv"
+            android:text="其他"
             android:textStyle="bold" />
+
         <EditText
             android:id="@+id/frag_write_et"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:inputType="number"
-            android:background="@color/white"/>
+            android:background="@color/white"
+            android:inputType="number" />
     </RelativeLayout>
+
     <View
         android:id="@+id/frag_write_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/frag_write_rl_top"
-        android:background="@color/grey_light"/>
+        android:background="@color/grey_light" />
+
     <GridView
         android:id="@+id/frag_write_gv"
         android:layout_width="match_parent"
@@ -48,32 +52,34 @@
         android:background="@color/white"
         android:numColumns="5"
         android:paddingTop="5dp"
-        android:paddingBottom="5dp"/>
-        <!--自定义软键盘-->
+        android:paddingBottom="5dp" />
+    <!--自定义软键盘-->
     <android.inputmethodservice.KeyboardView
         android:id="@+id/frag_write_keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@mipmap/keyboard"
-        android:keyTextColor="@color/black"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:keyTextColor="@color/black"
         android:paddingTop="1dp"
-        android:layout_alignParentBottom="true"
         android:shadowColor="@color/white"
-        android:shadowRadius="0.0"/>
+        android:shadowRadius="0.0" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/frag_write_keyboard"
         android:background="@color/white">
+
         <TextView
             android:id="@+id/frag_write_tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2022年6月18日 1:43"
             android:layout_alignParentRight="true"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:text="2022年6月18日 1:43" />
 
         <TextView
             android:id="@+id/frag_write_tv_remark"

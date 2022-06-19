@@ -21,7 +21,7 @@ public class AccountAdapter extends BaseAdapter {
     // 加载布局
     LayoutInflater inflater;
     // 获取时间用于显示
-    int year,month,day;
+    int year, month, day;
 
     public AccountAdapter(Context context, List<AccountBean> datas) {
         this.context = context;
@@ -30,7 +30,7 @@ public class AccountAdapter extends BaseAdapter {
         // 获取年月日
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH)+1;
+        month = calendar.get(Calendar.MONTH) + 1;
         day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
@@ -55,10 +55,10 @@ public class AccountAdapter extends BaseAdapter {
         ViewHolder holder = null;
         // 初始化holder
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.item_mainlv,parent,false);
+            convertView = inflater.inflate(R.layout.item_mainlv, parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else{
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -67,22 +67,23 @@ public class AccountAdapter extends BaseAdapter {
         holder.typeIv.setImageResource(bean.getsImageId());
         holder.name.setText(bean.getTypename());
         holder.remark.setText(bean.getBeizhu());
-        holder.money.setText("￥ "+bean.getMoney());
+        holder.money.setText("￥ " + bean.getMoney());
         // 判断时间显示格式
-        if (bean.getYear()==year&&bean.getMonth()==month&&bean.getDay()==day) {
+        if (bean.getYear() == year && bean.getMonth() == month && bean.getDay() == day) {
             String time = bean.getTime().split(" ")[1];// 除去前后空格
-            holder.time.setText("今天 "+time);
-        }else {
+            holder.time.setText("今天 " + time);
+        } else {
             holder.time.setText(bean.getTime());
         }
         return convertView;
     }
 
     // 设置空间管理类，方便之后使用
-    class  ViewHolder{
+    class ViewHolder {
         ImageView typeIv;
-        TextView name,remark,time,money;
-        public ViewHolder(View view){
+        TextView name, remark, time, money;
+
+        public ViewHolder(View view) {
             typeIv = view.findViewById(R.id.item_mainlv_iv);
             name = view.findViewById(R.id.item_mainlv_tv_name);
             time = view.findViewById(R.id.item_mainlv_tv_time);

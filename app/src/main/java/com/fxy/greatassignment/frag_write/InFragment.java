@@ -1,13 +1,5 @@
 package com.fxy.greatassignment.frag_write;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.fxy.greatassignment.R;
 import com.fxy.greatassignment.database.DBManager;
 import com.fxy.greatassignment.database.TypeBean;
@@ -34,6 +26,7 @@ public class InFragment extends FatherFragment {
         type.setText("其他");
         imageView.setImageResource(R.mipmap.in_qita_ls);
     }
+
     /*
      * 重载写入数据库函数
      */

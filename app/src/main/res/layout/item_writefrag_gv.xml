@@ -4,19 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp">
+
     <ImageView
         android:id="@+id/item_writefrag_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_qita_hs"/>
+        android:src="@mipmap/ic_qita_hs" />
+
     <TextView
         android:id="@+id/item_writefrag_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="其他"
         android:layout_marginTop="5dp"
-        android:textColor="@color/grey_808080"
         android:gravity="center"
-        android:textSize="14sp"/>
+        android:text="其他"
+        android:textColor="@color/grey_808080"
+        android:textSize="14sp" />
 
 </LinearLayout>

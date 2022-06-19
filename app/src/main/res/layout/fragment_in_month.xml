@@ -4,13 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/grey_light">
 
-    <!-- TODO: Update blank fragment layout -->
     <ListView
         android:id="@+id/frag_month_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="1dp"
-        android:divider="@color/grey_light"/>
+        android:divider="@color/grey_light"
+        android:dividerHeight="1dp" />
 
 
 </FrameLayout>

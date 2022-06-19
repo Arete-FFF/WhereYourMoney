@@ -1,67 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <DatePicker
         android:id="@+id/dialog_calendar_dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
+        android:layout_gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="请输入时间"
         android:layout_gravity="center"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        android:text="请输入时间" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
+        android:orientation="horizontal"
         android:padding="5dp">
+
         <EditText
             android:id="@+id/dialog_calendar_et_hour"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:maxLength="2"/>
+            android:maxLength="2" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" : "
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/dialog_calendar_et_minute"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:maxLength="2"/>
+            android:maxLength="2" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/dialog_calendar_btn_cancel"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="取消"
-            android:textColor="@color/blue_3366ff"
+            android:layout_marginRight="10dp"
             android:background="@drawable/dialog_btn_bg_1"
-            android:layout_marginRight="10dp"/>
+            android:text="取消"
+            android:textColor="@color/blue_3366ff" />
+
         <Button
             android:id="@+id/dialog_calendar_btn_ensure"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="确定"
-            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/dialog_btn_bg_2"
-            android:layout_marginLeft="10dp"/>
+            android:text="确定"
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

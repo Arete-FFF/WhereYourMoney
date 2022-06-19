@@ -1,4 +1,5 @@
 package com.fxy.greatassignment.database;
+
 /*
  * 表示收入或者支出具体类型的类
  * */
@@ -8,6 +9,17 @@ public class TypeBean {
     int imageId;    //未被选中图片id
     int simageId;    //被选中图片id
     int kind;     //收入-1  支出-0
+
+    public TypeBean() {
+    }
+
+    public TypeBean(int id, String typename, int imageId, int simageId, int kind) {
+        this.id = id;
+        this.typename = typename;
+        this.imageId = imageId;
+        this.simageId = simageId;
+        this.kind = kind;
+    }
 
     public int getId() {
         return id;
@@ -46,17 +58,6 @@ public class TypeBean {
     }
 
     public void setKind(int kind) {
-        this.kind = kind;
-    }
-
-    public TypeBean() {
-    }
-
-    public TypeBean(int id, String typename, int imageId, int simageId, int kind) {
-        this.id = id;
-        this.typename = typename;
-        this.imageId = imageId;
-        this.simageId = simageId;
         this.kind = kind;
     }
 }

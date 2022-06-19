@@ -2,10 +2,6 @@ package com.fxy.greatassignment.frag_write;
 
 import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +11,9 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.fxy.greatassignment.R;
 import com.fxy.greatassignment.adapter.TypeBaseAdapter;
@@ -36,7 +35,7 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
     KeyboardView keyboardView;
     EditText editText;
     ImageView imageView;
-    TextView type,remark,time;
+    TextView type, remark, time;
     GridView gridView;
     // 创建Bean List数据源
     List<TypeBean> typeBeanList;
@@ -57,7 +56,7 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_out,container,false);
+        View view = inflater.inflate(R.layout.fragment_out, container, false);
         //初始化view
         initView(view);
         //获取当前时间显示到右下角
@@ -83,7 +82,7 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
 
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         accountBean.setYear(year);
         accountBean.setMonth(month);
@@ -151,7 +150,7 @@ public class FatherFragment extends Fragment implements View.OnClickListener {
             public void onEnsure() {
                 // TODO 点击确定按钮
                 String moneyStr = editText.getText().toString();
-                if (TextUtils.isEmpty(moneyStr)||moneyStr.equals("0")) {
+                if (TextUtils.isEmpty(moneyStr) || moneyStr.equals("0")) {
                     getActivity().finish();
                     return;
                 }

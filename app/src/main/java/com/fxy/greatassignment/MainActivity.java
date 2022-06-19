@@ -1,7 +1,5 @@
 package com.fxy.greatassignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.fxy.greatassignment.adapter.AccountAdapter;
 import com.fxy.greatassignment.database.AccountBean;
 import com.fxy.greatassignment.database.DBManager;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     // 定义需要用到的控件
     // 定义今日收支
     ListView todayLv;
@@ -39,11 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // 定义每日数据的适配器
     AccountAdapter adapter;
     // 定义获取当前年月日
-    int year , month, day;
+    int year, month, day;
 
     // 头布局相关控件
     View headerView;
-    TextView topOutTv,topInTv,topbudgetTv,topConTv;
+    TextView topOutTv, topInTv, topbudgetTv, topConTv;
 
     // 定义非实时更新组件
     SharedPreferences preferences;
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter = new AccountAdapter(this, datas);
         todayLv.setAdapter(adapter);
     }
+
     /*
      * 初始化绑定控件，并且绑定监听
      */
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (position == 0) {
                     return false;
                 }
-                int pos = position-1;
+                int pos = position - 1;
                 //获取正在被点击的这条信息
                 AccountBean clickBean = datas.get(pos);
                 //弹出提示用户是否删除的对话框
@@ -103,13 +104,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
     /*
      * 弹出是否删除对话框，并监听给出反馈
      */
     private void showDeleteItemDialog(AccountBean clickBean) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示信息").setMessage("您确定要删除这条记录么？")
-                .setNegativeButton("取消",null)//取消则正常返回
+                .setNegativeButton("取消", null)//取消则正常返回
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() { //确定则调用数据库删除
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -151,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initTime() {
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH)+1;
+        month = calendar.get(Calendar.MONTH) + 1;
         day = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
@@ -174,21 +176,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //获取今日支出和收入总金额，显示在view当中
         float incomeOneDay = DBManager.getSumMoneyOneDay(year, month, day, 1);
         float outcomeOneDay = DBManager.getSumMoneyOneDay(year, month, day, 0);
-        String infoOneDay = "今日支出 ￥"+outcomeOneDay+"  收入 ￥"+incomeOneDay;
+        String infoOneDay = "今日支出 ￥" + outcomeOneDay + "  收入 ￥" + incomeOneDay;
         topConTv.setText(infoOneDay);
         //获取本月收入和支出总金额，显示在view当中
         float incomeOneMonth = DBManager.getSumMoneyOneMonth(year, month, 1);
         float outcomeOneMonth = DBManager.getSumMoneyOneMonth(year, month, 0);
-        topInTv.setText("￥"+incomeOneMonth);
-        topOutTv.setText("￥"+outcomeOneMonth);
+        topInTv.setText("￥" + incomeOneMonth);
+        topOutTv.setText("￥" + outcomeOneMonth);
 
         //设置显示预算剩余
         float bmoney = preferences.getFloat("bmoney", 0);
         if (bmoney == 0) {
             topbudgetTv.setText("￥ 0");
-        }else{
-            float syMoney = bmoney-outcomeOneMonth;
-            topbudgetTv.setText("￥"+syMoney);
+        } else {
+            float syMoney = bmoney - outcomeOneMonth;
+            topbudgetTv.setText("￥" + syMoney);
         }
     }
 
@@ -249,12 +251,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onEnsure(float money) {
                 //将预算金额写入到共享参数当中，进行存储
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putFloat("bmoney",money);
+                editor.putFloat("bmoney", money);
                 editor.commit();
                 //计算剩余金额
                 float outcomeOneMonth = DBManager.getSumMoneyOneMonth(year, month, 0);
-                float syMoney = money-outcomeOneMonth;//预算剩余 = 预算-支出
-                topbudgetTv.setText("￥"+syMoney);
+                float syMoney = money - outcomeOneMonth;//预算剩余 = 预算-支出
+                topbudgetTv.setText("￥" + syMoney);
             }
         });
     }

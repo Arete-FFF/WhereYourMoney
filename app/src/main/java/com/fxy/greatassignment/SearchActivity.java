@@ -1,7 +1,5 @@
 package com.fxy.greatassignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,10 +8,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.fxy.greatassignment.adapter.AccountAdapter;
 import com.fxy.greatassignment.database.AccountBean;
 import com.fxy.greatassignment.database.DBManager;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +23,10 @@ public class SearchActivity extends AppCompatActivity {
     EditText searchEt;
     TextView emptyTv;
     // 定义数据源
-    List<AccountBean>mDatas;
+    List<AccountBean> mDatas;
     // 定义适配器
     AccountAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
         // 初始化数据
         mDatas = new ArrayList<>();
         // 初始化适配器
-        adapter = new AccountAdapter(this,mDatas);
+        adapter = new AccountAdapter(this, mDatas);
         searchLv.setAdapter(adapter);
         // 当无数据时，显示的控件
         searchLv.setEmptyView(emptyTv);
@@ -63,7 +63,7 @@ public class SearchActivity extends AppCompatActivity {
                 String msg = searchEt.getText().toString().trim();
                 // 判断输入内容是否为空，如果为空，就提示不能搜索
                 if (TextUtils.isEmpty(msg)) {
-                    Toast.makeText(this,"输入内容不能为空！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "输入内容不能为空！", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // 开始搜索

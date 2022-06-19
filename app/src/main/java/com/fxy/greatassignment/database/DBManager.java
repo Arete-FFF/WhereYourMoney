@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +18,11 @@ import java.util.List;
 public class DBManager {
 
     private static SQLiteDatabase db;
+
     /*
      * 初始化数据库对象
      */
-    public static void initDB(Context context){
+    public static void initDB(Context context) {
         DBOpenHelper helper = new DBOpenHelper(context);  //得到帮助类对象
         db = helper.getWritableDatabase();      //得到数据库对象
     }
@@ -31,10 +31,10 @@ public class DBManager {
      * 读取数据库当中的数据，写入内存集合里
      *   kind :表示收入或者支出
      */
-    public static List<TypeBean>getTypeList(int kind){
-        List<TypeBean>list = new ArrayList<>();
+    public static List<TypeBean> getTypeList(int kind) {
+        List<TypeBean> list = new ArrayList<>();
         //读取typetb表当中的数据
-        String sql = "select * from typetb where kind = "+kind;
+        String sql = "select * from typetb where kind = " + kind;
         Cursor cursor = db.rawQuery(sql, null);
         //循环读取游标内容，存储到对象当中
         while (cursor.moveToNext()) {
@@ -54,24 +54,24 @@ public class DBManager {
      */
     public static void insertItemToAccounttb(AccountBean accountBean) {
         ContentValues values = new ContentValues();
-        values.put("typename",accountBean.getTypename());
-        values.put("sImageId",accountBean.getsImageId());
-        values.put("beizhu",accountBean.getBeizhu());
-        values.put("money",accountBean.getMoney());
-        values.put("time",accountBean.getTime());
-        values.put("year",accountBean.getYear());
-        values.put("month",accountBean.getMonth());
-        values.put("day",accountBean.getDay());
-        values.put("kind",accountBean.getKind());
-        db.insert("accounttb",null,values);
+        values.put("typename", accountBean.getTypename());
+        values.put("sImageId", accountBean.getsImageId());
+        values.put("beizhu", accountBean.getBeizhu());
+        values.put("money", accountBean.getMoney());
+        values.put("time", accountBean.getTime());
+        values.put("year", accountBean.getYear());
+        values.put("month", accountBean.getMonth());
+        values.put("day", accountBean.getDay());
+        values.put("kind", accountBean.getKind());
+        db.insert("accounttb", null, values);
         Log.i("NoBug", "insert succeed!!!!!!!!!!!!");
     }
 
     /*
      * 获取记账表当中某一天的所有支出或者收入情况
      */
-    public static List<AccountBean>getAccountListOneDayFromAccounttb(int year,int month,int day){
-        List<AccountBean>list = new ArrayList<>();
+    public static List<AccountBean> getAccountListOneDayFromAccounttb(int year, int month, int day) {
+        List<AccountBean> list = new ArrayList<>();
         String sql = "select * from accounttb where year=? and month=? and day=? order by id desc";
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", day + ""});
         //遍历符合要求的每一行数据
@@ -88,11 +88,12 @@ public class DBManager {
         }
         return list;
     }
+
     /*
      * 获取记账表当中某一月的所有支出或者收入情况
      */
-    public static List<AccountBean>getAccountListOneMonthFromAccounttb(int year,int month){
-        List<AccountBean>list = new ArrayList<>();
+    public static List<AccountBean> getAccountListOneMonthFromAccounttb(int year, int month) {
+        List<AccountBean> list = new ArrayList<>();
         String sql = "select * from accounttb where year=? and month=? order by id desc";
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + ""});
         //遍历符合要求的每一行数据
@@ -104,16 +105,17 @@ public class DBManager {
             @SuppressLint("Range") int sImageId = cursor.getInt(cursor.getColumnIndex("sImageId"));
             @SuppressLint("Range") int kind = cursor.getInt(cursor.getColumnIndex("kind"));
             @SuppressLint("Range") float money = cursor.getFloat(cursor.getColumnIndex("money"));
-            @SuppressLint("Range") int day = cursor.getInt(cursor.getColumnIndex( "day"));
+            @SuppressLint("Range") int day = cursor.getInt(cursor.getColumnIndex("day"));
             AccountBean accountBean = new AccountBean(id, typename, sImageId, beizhu, money, time, year, month, day, kind);
             list.add(accountBean);
         }
         return list;
     }
+
     /*
      * 获取某一天的支出或者收入的总金额   kind：支出==0    收入===1
      */
-    public static float getSumMoneyOneDay(int year,int month,int day,int kind){
+    public static float getSumMoneyOneDay(int year, int month, int day, int kind) {
         float total = 0.0f;
         String sql = "select sum(money) from accounttb where year=? and month=? and day=? and kind=?";
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", day + "", kind + ""});
@@ -124,10 +126,11 @@ public class DBManager {
         }
         return total;
     }
+
     /*
      * 获取某一月的支出或者收入的总金额   kind：支出==0    收入===1
      */
-    public static float getSumMoneyOneMonth(int year,int month,int kind){
+    public static float getSumMoneyOneMonth(int year, int month, int kind) {
         float total = 0.0f;
         String sql = "select sum(money) from accounttb where year=? and month=? and kind=?";
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
@@ -138,10 +141,11 @@ public class DBManager {
         }
         return total;
     }
+
     /*
      * 统计某月份支出或者收入情况有多少条  收入-1   支出-0
      */
-    public static int getCountItemOneMonth(int year,int month,int kind){
+    public static int getCountItemOneMonth(int year, int month, int kind) {
         int total = 0;
         String sql = "select count(money) from accounttb where year=? and month=? and kind=?";
         Cursor cursor = db.rawQuery(sql, new String[]{year + "", month + "", kind + ""});
@@ -156,13 +160,14 @@ public class DBManager {
         int i = db.delete("accounttb", "id=?", new String[]{click_id + ""});
         return i;
     }
+
     /*
      * 根据备注查找记录
      */
     public static List<AccountBean> getAccountListByRemarkFromAccounttb(String text) {
-        List<AccountBean>list = new ArrayList<>();
+        List<AccountBean> list = new ArrayList<>();
         //使用模糊查询
-        String sql = "select * from accounttb where beizhu like '%"+text+"%'";
+        String sql = "select * from accounttb where beizhu like '%" + text + "%'";
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
             @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -188,11 +193,12 @@ public class DBManager {
         String sql = "delete from accounttb";
         db.execSQL(sql);
     }
+
     /*
      * 查询数据库所有数据
      */
     public static List<AccountBean> getAllAccountListFromAccounttb() {
-        List<AccountBean>list = new ArrayList<>();
+        List<AccountBean> list = new ArrayList<>();
         // 查询所有数据
         String sql = "select * from accounttb order by year, month, day desc";
         Cursor cursor = db.rawQuery(sql, null);
@@ -227,11 +233,12 @@ public class DBManager {
         }
         return total;
     }
+
     /*
      * 获取某年某月某一类型的总钱数，并计算所有比例存入数据库
      */
     public static List<MonthItemBean> getMonthListFromAccounttb(int year, int month, int kind) {
-        List<MonthItemBean>list = new ArrayList<>();
+        List<MonthItemBean> list = new ArrayList<>();
         float sumMoneyOneMonth = getSumMoneyOneMonth(year, month, kind);  //求出支出或者收入总钱数
         String sql = "select typename,sImageId,sum(money)as total from accounttb where year=? and month=? and kind=? group by typename " +
                 "order by total desc";
@@ -241,8 +248,8 @@ public class DBManager {
             @SuppressLint("Range") String typename = cursor.getString(cursor.getColumnIndex("typename"));
             @SuppressLint("Range") float total = cursor.getFloat(cursor.getColumnIndex("total"));
             //计算所占百分比  total /sumMonth
-            BigDecimal temp = new BigDecimal(total/sumMoneyOneMonth) ;
-            float ratio = temp.setScale(4,4).floatValue();
+            BigDecimal temp = new BigDecimal(total / sumMoneyOneMonth);
+            float ratio = temp.setScale(4, 4).floatValue();
 
             MonthItemBean bean = new MonthItemBean(sImageId, typename, ratio, total);
             list.add(bean);

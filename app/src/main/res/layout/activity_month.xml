@@ -4,78 +4,88 @@
     android:layout_height="match_parent"
     android:background="@color/grey_light"
     android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
+
         <ImageView
             android:id="@+id/month_iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/ih_error"
             android:layout_marginLeft="10dp"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:src="@mipmap/ih_error" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="本月账单详情"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="20dp"
         android:background="@color/white"
-        android:padding="10dp"
-        android:layout_marginTop="20dp">
+        android:orientation="vertical"
+        android:padding="10dp">
+
         <TextView
             android:id="@+id/month_tv_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="共1笔支出, ￥23.0"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="14sp" />
+
         <TextView
             android:id="@+id/month_tv_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="共2笔收入, ￥113.0"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="14sp" />
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/month_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_margin="10dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/month_btn_out"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="支出"
+            android:layout_marginRight="10dp"
             android:background="@drawable/dialog_btn_bg_2"
-            android:textColor="@color/white"
-            android:textStyle="bold"
             android:onClick="onClick"
-            android:layout_marginRight="10dp"/>
+            android:text="支出"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/month_btn_in"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:text="收入"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/dialog_btn_bg_1"
-            android:textColor="@color/black"
-            android:textStyle="bold"
             android:onClick="onClick"
-            android:layout_marginLeft="10dp"/>
+            android:text="收入"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
     </LinearLayout>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/month_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

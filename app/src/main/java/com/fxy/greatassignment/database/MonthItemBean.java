@@ -9,19 +9,10 @@ public class MonthItemBean {
     public MonthItemBean() {
     }
 
-    public void setsImageId(int sImageId) {
+    public MonthItemBean(int sImageId, String type, float ratio, float totalMoney) {
         this.sImageId = sImageId;
-    }
-
-    public void setType(String type) {
         this.type = type;
-    }
-
-    public void setRatio(float ratio) {
         this.ratio = ratio;
-    }
-
-    public void setTotalMoney(float totalMoney) {
         this.totalMoney = totalMoney;
     }
 
@@ -29,22 +20,31 @@ public class MonthItemBean {
         return sImageId;
     }
 
+    public void setsImageId(int sImageId) {
+        this.sImageId = sImageId;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public float getRatio() {
         return ratio;
     }
 
+    public void setRatio(float ratio) {
+        this.ratio = ratio;
+    }
+
     public float getTotalMoney() {
         return totalMoney;
     }
 
-    public MonthItemBean(int sImageId, String type, float ratio, float totalMoney) {
-        this.sImageId = sImageId;
-        this.type = type;
-        this.ratio = ratio;
+    public void setTotalMoney(float totalMoney) {
         this.totalMoney = totalMoney;
     }
 }

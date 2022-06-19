@@ -1,6 +1,4 @@
 package com.fxy.greatassignment.utils;
-import com.fxy.greatassignment.R;
-
 
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
@@ -9,22 +7,72 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 
+import com.fxy.greatassignment.R;
+
 
 public class KeyBoardUtils {
     //自定义键盘
     private final Keyboard k;
+    OnEnsureListener onEnsureListener;
     // 定义需绑定控件
     private KeyboardView keyboardView;
     private EditText editText;
+    KeyboardView.OnKeyboardActionListener listener = new KeyboardView.OnKeyboardActionListener() {
+        @Override
+        public void onPress(int primaryCode) {
+        }
 
-    public interface OnEnsureListener{
-        public void onEnsure();
-    }
-    OnEnsureListener onEnsureListener;
+        @Override
+        public void onRelease(int primaryCode) {
+        }
 
-    public void setOnEnsureListener(OnEnsureListener onEnsureListener) {
-        this.onEnsureListener = onEnsureListener;
-    }
+        /*
+         * 绑定所有key的响应
+         */
+        @Override
+        public void onKey(int primaryCode, int[] keyCodes) {
+            Editable edittable = editText.getText();
+            int start = editText.getSelectionStart();
+            switch (primaryCode) {
+                case Keyboard.KEYCODE_DELETE:   //删除情况，删除最右边的一个数字
+                    if (edittable != null && edittable.length() > 0) {
+                        if (start > 0) {
+                            edittable.delete(start - 1, start);
+                        }
+                    }
+                    break;
+                case Keyboard.KEYCODE_CANCEL:   //清零情况，直接清空edittabal
+                    edittable.clear();
+                    break;
+                case Keyboard.KEYCODE_DONE:    //完成情况，获取这个edittable
+                    onEnsureListener.onEnsure();   //通过接口回调的方法
+                    break;
+                default:  //其他数字直接插入
+                    edittable.insert(start, Character.toString((char) primaryCode));
+                    break;
+            }
+        }
+
+        @Override
+        public void onText(CharSequence text) {
+        }
+
+        @Override
+        public void swipeLeft() {
+        }
+
+        @Override
+        public void swipeRight() {
+        }
+
+        @Override
+        public void swipeDown() {
+        }
+
+        @Override
+        public void swipeUp() {
+        }
+    };
 
     /*
      * 设置软键盘格式
@@ -41,62 +89,16 @@ public class KeyBoardUtils {
         this.keyboardView.setOnKeyboardActionListener(listener);  //设置键盘按钮被点击了的监听
     }
 
-    KeyboardView.OnKeyboardActionListener listener = new KeyboardView.OnKeyboardActionListener() {
-        @Override
-        public void onPress(int primaryCode) {
-        }
-        @Override
-        public void onRelease(int primaryCode) {
-        }
-        /*
-         * 绑定所有key的响应
-         */
-        @Override
-        public void onKey(int primaryCode, int[] keyCodes) {
-            Editable edittable = editText.getText();
-            int start = editText.getSelectionStart();
-            switch (primaryCode) {
-                case Keyboard.KEYCODE_DELETE:   //删除情况，删除最右边的一个数字
-                    if (edittable !=null && edittable.length()>0) {
-                        if (start>0) {
-                            edittable.delete(start-1,start);
-                        }
-                    }
-                    break;
-                case Keyboard.KEYCODE_CANCEL:   //清零情况，直接清空edittabal
-                    edittable.clear();
-                    break;
-                case Keyboard.KEYCODE_DONE:    //完成情况，获取这个edittable
-                    onEnsureListener.onEnsure();   //通过接口回调的方法
-                    break;
-                default:  //其他数字直接插入
-                    edittable.insert(start,Character.toString((char)primaryCode));
-                    break;
-            }
-        }
-        @Override
-        public void onText(CharSequence text) {
-        }
-        @Override
-        public void swipeLeft() {
-        }
-        @Override
-        public void swipeRight() {
-        }
-        @Override
-        public void swipeDown() {
-        }
-        @Override
-        public void swipeUp() {
-        }
-    };
+    public void setOnEnsureListener(OnEnsureListener onEnsureListener) {
+        this.onEnsureListener = onEnsureListener;
+    }
 
     /*
      * 显示键盘
      */
-    public void showKeyboard(){
+    public void showKeyboard() {
         int visibility = keyboardView.getVisibility();
-        if (visibility == View.INVISIBLE ||visibility==View.GONE) {
+        if (visibility == View.INVISIBLE || visibility == View.GONE) {
             keyboardView.setVisibility(View.VISIBLE);
         }
     }
@@ -104,10 +106,14 @@ public class KeyBoardUtils {
     /*
      * 隐藏键盘
      */
-    public void hideKeyboard(){
+    public void hideKeyboard() {
         int visibility = keyboardView.getVisibility();
-        if (visibility== View.VISIBLE||visibility==View.INVISIBLE) {
+        if (visibility == View.VISIBLE || visibility == View.INVISIBLE) {
             keyboardView.setVisibility(View.GONE);
         }
+    }
+
+    public interface OnEnsureListener {
+        public void onEnsure();
     }
 }

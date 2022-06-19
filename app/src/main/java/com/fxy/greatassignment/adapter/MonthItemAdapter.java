@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import java.math.BigDecimal;
 import android.widget.TextView;
 
 import com.fxy.greatassignment.R;
 import com.fxy.greatassignment.database.MonthItemBean;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /*
@@ -48,10 +48,10 @@ public class MonthItemAdapter extends BaseAdapter {
         // 初始化框架类
         ViewHolder holder = null;
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.item_monthfrag_lv,parent,false);
+            convertView = inflater.inflate(R.layout.item_monthfrag_lv, parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else{
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         // 获取显示内容
@@ -62,11 +62,11 @@ public class MonthItemAdapter extends BaseAdapter {
 
         // 获取ratio并将ratio转为string格式
         float ratio = bean.getRatio();
-        BigDecimal temp = new BigDecimal(ratio*100);
-        String pert = temp.setScale(2,4).floatValue() + "%";
+        BigDecimal temp = new BigDecimal(ratio * 100);
+        String pert = temp.setScale(2, 4).floatValue() + "%";
 
         holder.ratioTv.setText(pert);
-        holder.totalTv.setText("￥ "+bean.getTotalMoney());
+        holder.totalTv.setText("￥ " + bean.getTotalMoney());
 
         return convertView;
     }
@@ -74,10 +74,11 @@ public class MonthItemAdapter extends BaseAdapter {
     /*
      * 定义框架类，方便之后多次使用
      */
-    class ViewHolder{
-        TextView typeTv,ratioTv,totalTv;
+    class ViewHolder {
+        TextView typeTv, ratioTv, totalTv;
         ImageView iv;
-        public ViewHolder(View view){
+
+        public ViewHolder(View view) {
             typeTv = view.findViewById(R.id.item_monthfrag_tv_type);
             ratioTv = view.findViewById(R.id.item_monthfrag_tv_pert);
             totalTv = view.findViewById(R.id.item_monthfrag_tv_sum);

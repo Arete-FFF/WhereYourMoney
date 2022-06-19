@@ -2,48 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/grey_light">
+    android:background="@color/grey_light"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
+
         <ImageView
             android:id="@+id/setting_iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/ih_error"
             android:layout_marginLeft="10dp"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:src="@mipmap/ih_error" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="更多"
-            android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_centerInParent="true"/>
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <TextView
         android:id="@+id/setting_tv_clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="清除所有数据"
+        android:background="@color/white"
         android:onClick="onClick"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:padding="15dp"
-        android:background="@color/white"/>
+        android:text="清除所有数据"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/setting_tv_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="展示所有数据"
+        android:background="@color/white"
         android:onClick="onClick"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:padding="15dp"
-        android:background="@color/white"/>
+        android:text="展示所有数据"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/grey_light"/>
+        android:background="@color/grey_light" />
 </LinearLayout>

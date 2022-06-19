@@ -23,7 +23,20 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
     Button cancel, ensure;
     // 创建监听
     OnEnsureListener onEnsureListener;
+    /*
+     * 弹出软键盘
+     */
+    Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    };
 
+    public RemarkDialog(@NonNull Context context) {
+        super(context);
+    }
 
     /*
      * 设定回调接口的方法
@@ -46,13 +59,6 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
         ensure.setOnClickListener(this);
     }
 
-    public RemarkDialog(@NonNull Context context) {
-        super(context);
-    }
-
-    public interface OnEnsureListener{
-        public void onEnsure();
-    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -60,7 +66,7 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
                 cancel();
                 break;
             case R.id.dialog_remark_btn_ensure:
-                if (onEnsureListener!=null) {
+                if (onEnsureListener != null) {
                     onEnsureListener.onEnsure();
                 }
                 break;
@@ -70,14 +76,14 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
     /*
      * 获取数据的方法
      */
-    public String getEditText(){
+    public String getEditText() {
         return editText.getText().toString().trim();
     }
 
     /*
      * 设置弹出页面的大小
      */
-    public void setDialogSize(){
+    public void setDialogSize() {
         // 获取当前窗口的对象
         Window window = getWindow();
         // 获取窗口对象参数
@@ -85,7 +91,7 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
         //获取屏幕宽度
         Display d = window.getWindowManager().getDefaultDisplay();
         //对话框窗口为屏幕窗口
-        windowAttributes.width = (int)(d.getWidth());
+        windowAttributes.width = (int) (d.getWidth());
         //显示在屏幕底部
         windowAttributes.gravity = Gravity.BOTTOM;
         //设置背景资源为透明
@@ -93,17 +99,10 @@ public class RemarkDialog extends Dialog implements View.OnClickListener {
         window.setAttributes(windowAttributes);
 
         //设置延迟弹出软键盘  否则会出现显示异常
-        handler.sendEmptyMessageDelayed(1,100);
+        handler.sendEmptyMessageDelayed(1, 100);
     }
 
-    /*
-     * 弹出软键盘
-     */
-    Handler handler = new Handler(){
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.toggleSoftInput(0,InputMethodManager.HIDE_NOT_ALWAYS);
-        }
-    };
+    public interface OnEnsureListener {
+        public void onEnsure();
+    }
 }

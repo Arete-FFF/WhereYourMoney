@@ -14,7 +14,7 @@ public class MonthVPAdapter extends FragmentPagerAdapter {
     /*
      * 传入frag即可
      */
-    public MonthVPAdapter(@NonNull FragmentManager fm,List<Fragment>fragmentList) {
+    public MonthVPAdapter(@NonNull FragmentManager fm, List<Fragment> fragmentList) {
         super(fm);
         this.fragmentList = fragmentList;
     }

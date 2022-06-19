@@ -10,11 +10,27 @@ public class AccountBean {
     int sImageId;   //被选中类型图片
     String beizhu;   //备注
     float money;  //价格
-    String time ;  //保存时间字符串
+    String time;  //保存时间字符串
     int year;
     int month;
     int day;
     int kind;   //类型  支出 0 收入 1
+
+    public AccountBean() {
+    }
+
+    public AccountBean(int id, String typename, int sImageId, String beizhu, float money, String time, int year, int month, int day, int kind) {
+        this.id = id;
+        this.typename = typename;
+        this.sImageId = sImageId;
+        this.beizhu = beizhu;
+        this.money = money;
+        this.time = time;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.kind = kind;
+    }
 
     public int getId() {
         return id;
@@ -93,22 +109,6 @@ public class AccountBean {
     }
 
     public void setKind(int kind) {
-        this.kind = kind;
-    }
-
-    public AccountBean() {
-    }
-
-    public AccountBean(int id, String typename, int sImageId, String beizhu, float money, String time, int year, int month, int day, int kind) {
-        this.id = id;
-        this.typename = typename;
-        this.sImageId = sImageId;
-        this.beizhu = beizhu;
-        this.money = money;
-        this.time = time;
-        this.year = year;
-        this.month = month;
-        this.day = day;
         this.kind = kind;
     }
 }

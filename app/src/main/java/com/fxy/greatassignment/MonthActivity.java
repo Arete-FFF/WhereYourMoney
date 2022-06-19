@@ -1,14 +1,14 @@
 package com.fxy.greatassignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.fxy.greatassignment.adapter.MonthVPAdapter;
 import com.fxy.greatassignment.database.DBManager;
@@ -21,8 +21,8 @@ import java.util.List;
 
 public class MonthActivity extends AppCompatActivity {
     // 定义需要绑定的控件
-    Button inBtn,outBtn;
-    TextView inTv,outTv;
+    Button inBtn, outBtn;
+    TextView inTv, outTv;
     ViewPager viewPager;
 
     // 获取当前年月
@@ -63,8 +63,8 @@ public class MonthActivity extends AppCompatActivity {
         outMonthFragment = new OutMonthFragment();
         //添加数据到Fragment当中
         Bundle bundle = new Bundle();
-        bundle.putInt("year",year);
-        bundle.putInt("month",month);
+        bundle.putInt("year", year);
+        bundle.putInt("month", month);
         inMonthFragment.setArguments(bundle);
         outMonthFragment.setArguments(bundle);
         // 将Fragment添加到数据源当中
@@ -77,11 +77,12 @@ public class MonthActivity extends AppCompatActivity {
         // 绑定按钮与listView
         setVPSelectListener();
     }
+
     /*
      * 绑定按钮与listView,使其同步变化
      */
     private void setVPSelectListener() {
-        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 setButtonStyle(position);
@@ -95,7 +96,7 @@ public class MonthActivity extends AppCompatActivity {
     private void initTime() {
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH)+1;
+        month = calendar.get(Calendar.MONTH) + 1;
     }
 
     /*
@@ -106,8 +107,8 @@ public class MonthActivity extends AppCompatActivity {
         float outMoneyOneMonth = DBManager.getSumMoneyOneMonth(year, month, 0); //支出总钱数
         int incountItemOneMonth = DBManager.getCountItemOneMonth(year, month, 1);  //收入多少笔
         int outcountItemOneMonth = DBManager.getCountItemOneMonth(year, month, 0); //支出多少笔
-        inTv.setText("共"+incountItemOneMonth+"笔收入, ￥ "+inMoneyOneMonth);
-        outTv.setText("共"+outcountItemOneMonth+"笔支出, ￥ "+outMoneyOneMonth);
+        inTv.setText("共" + incountItemOneMonth + "笔收入, ￥ " + inMoneyOneMonth);
+        outTv.setText("共" + outcountItemOneMonth + "笔支出, ￥ " + outMoneyOneMonth);
     }
 
     /*
@@ -144,13 +145,13 @@ public class MonthActivity extends AppCompatActivity {
     /*
      * 设置按钮样式的改变  支出 0  收入 1
      */
-    private void setButtonStyle(int kind){
+    private void setButtonStyle(int kind) {
         if (kind == 0) {
             outBtn.setBackgroundResource(R.drawable.dialog_btn_bg_2);
             outBtn.setTextColor(Color.WHITE);
             inBtn.setBackgroundResource(R.drawable.dialog_btn_bg_1);
             inBtn.setTextColor(Color.BLACK);
-        }else if (kind == 1){
+        } else if (kind == 1) {
             inBtn.setBackgroundResource(R.drawable.dialog_btn_bg_2);
             inBtn.setTextColor(Color.WHITE);
             outBtn.setBackgroundResource(R.drawable.dialog_btn_bg_1);

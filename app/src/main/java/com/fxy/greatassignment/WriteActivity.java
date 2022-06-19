@@ -1,15 +1,14 @@
 package com.fxy.greatassignment;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-import android.view.View;
-
 import com.fxy.greatassignment.adapter.WriteFragmentPagerAdapter;
 import com.fxy.greatassignment.frag_write.InFragment;
-import com.fxy.greatassignment.frag_write.FatherFragment;
 import com.fxy.greatassignment.frag_write.OutFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -56,8 +55,8 @@ public class WriteActivity extends AppCompatActivity {
     /*
      * 点击事件
      */
-    public void ivonClick(View view){
-        switch (view.getId()){
+    public void ivonClick(View view) {
+        switch (view.getId()) {
             case R.id.write_iv_back://若点击为❌图标
                 finish();
                 break;

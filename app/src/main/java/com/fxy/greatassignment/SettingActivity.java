@@ -1,13 +1,13 @@
 package com.fxy.greatassignment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.fxy.greatassignment.database.DBManager;
 
@@ -44,14 +44,14 @@ public class SettingActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("删除提示")
                 .setMessage("您确定要删除所有记录么？\n注意：删除后无法恢复，请慎重选择！")
-                .setPositiveButton("取消",null)
+                .setPositiveButton("取消", null)
                 .setNegativeButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //调用DBManager的删除所有数据
                         DBManager.deleteAllAccount();
                         // 使用toast显示结果
-                        Toast.makeText(SettingActivity.this,"删除成功！",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
                     }
                 });
         // 显示提示

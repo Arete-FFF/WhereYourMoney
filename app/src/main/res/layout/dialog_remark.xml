@@ -1,53 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:background="@color/white">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="10dp">
+
     <TextView
         android:id="@+id/dialog_remark_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="添加备注"
-        android:textSize="18sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="18sp" />
     <!--不显示下划线-->
     <EditText
         android:id="@+id/dialog_remark_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_remark_tv"
-        android:hint="备注"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"
-        android:textSize="16sp"
-        android:background="@color/white">
-        <requestFocus/>
+        android:background="@color/white"
+        android:hint="备注"
+        android:textSize="16sp">
+
+        <requestFocus />
     </EditText>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_below="@id/dialog_remark_et"
+        android:orientation="horizontal"
         android:padding="10dp">
+
         <Button
             android:id="@+id/dialog_remark_btn_cancel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:text="取消"
             android:background="@drawable/dialog_btn_bg_1"
-            android:textStyle="bold"
+            android:text="取消"
             android:textColor="@color/blue_3366ff"
-            android:layout_marginRight="5dp"/>
+            android:textStyle="bold" />
+
         <Button
             android:id="@+id/dialog_remark_btn_ensure"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:text="添加备注"
             android:background="@drawable/dialog_btn_bg_2"
-            android:textStyle="bold"
+            android:text="添加备注"
             android:textColor="@color/white"
-            android:layout_marginRight="5dp"/>
+            android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>

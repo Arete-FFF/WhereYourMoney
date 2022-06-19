@@ -9,9 +9,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.List;
 
 public class WriteFragmentPagerAdapter extends FragmentPagerAdapter {
-    List<Fragment>fragmentList;
-    String[]title = {"支出","收入"};//设置标题  之后用于横向展示传入
-    public WriteFragmentPagerAdapter(@NonNull FragmentManager fragmentManager,List<Fragment>fragmentList) {
+    List<Fragment> fragmentList;
+    String[] title = {"支出", "收入"};//设置标题  之后用于横向展示传入
+
+    public WriteFragmentPagerAdapter(@NonNull FragmentManager fragmentManager, List<Fragment> fragmentList) {
         super(fragmentManager);
         this.fragmentList = fragmentList;
     }

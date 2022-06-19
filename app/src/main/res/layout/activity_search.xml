@@ -2,56 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/grey_light">
+    android:background="@color/grey_light"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
+
         <ImageView
             android:id="@+id/search_iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:onClick="onClick"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/ih_error"/>
+            android:onClick="onClick"
+            android:src="@mipmap/ih_error" />
+
         <EditText
             android:id="@+id/search_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/search_iv_back"
             android:background="@drawable/dialog_btn_bg_1"
-            android:layout_centerVertical="true"
-            android:textSize="16sp"
+            android:hint="请输入搜索备注"
+            android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:layout_marginLeft="10dp"
-            android:hint="请输入搜索备注">
-            <requestFocus/>
+            android:textSize="16sp">
+
+            <requestFocus />
         </EditText>
+
         <ImageView
             android:id="@+id/search_iv_sh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/search"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:src="@mipmap/search" />
     </RelativeLayout>
+
     <ListView
         android:id="@+id/search_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="6dp"
-        android:divider="@color/grey_light" />
+        android:divider="@color/grey_light"
+        android:dividerHeight="6dp" />
+
     <TextView
         android:id="@+id/search_tv_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="未查询到任何数据"
+        android:layout_marginTop="250dp"
         android:gravity="center"
-        android:textSize="21sp"
-        android:layout_marginTop="250dp"/>
+        android:text="未查询到任何数据"
+        android:textSize="21sp" />
 
 </LinearLayout>

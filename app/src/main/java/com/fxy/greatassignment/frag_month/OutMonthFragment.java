@@ -1,13 +1,12 @@
 package com.fxy.greatassignment.frag_month;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import androidx.fragment.app.Fragment;
 
 import com.fxy.greatassignment.R;
 import com.fxy.greatassignment.adapter.MonthItemAdapter;
@@ -35,7 +34,7 @@ public class OutMonthFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_in_month, container, false);
+        View view = inflater.inflate(R.layout.fragment_in_month, container, false);
         monthLv = view.findViewById(R.id.frag_month_lv);
         // 获取Activity传递的数据
         Bundle bundle = getArguments();
@@ -50,13 +49,13 @@ public class OutMonthFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
-        loadData(year,month,0);
+        loadData(year, month, 0);
     }
 
 
-    public void loadData(int year,int month,int kind) {
+    public void loadData(int year, int month, int kind) {
         List<MonthItemBean> list = DBManager.getMonthListFromAccounttb(year, month, kind);
         data.clear();
         data.addAll(list);
